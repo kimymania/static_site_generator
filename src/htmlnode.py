@@ -27,7 +27,9 @@ class HTMLNode:
 
 class LeafNode(HTMLNode):
     def __init__(self, tag=None, value=None, props=None) -> None:
-        super().__init__(tag, value)
+        super().__init__(self)
+        self.tag = tag
+        self.value = value
         self.props = props
 
     def to_html(self):
@@ -43,8 +45,10 @@ class LeafNode(HTMLNode):
 
 class ParentNode(HTMLNode):
     def __init__(self, tag, children, props=None) -> None:
-        super().__init__(tag, props)
+        super().__init__(self)
+        self.tag = tag
         self.children = children
+        self.props = props
 
     def to_html(self):
         if not self.tag:
@@ -56,7 +60,7 @@ class ParentNode(HTMLNode):
         for child in self.children:
             value += child.to_html()
 
-        return f"<{self.tag}>{value}</{self.tag}>"
+        return f"<{self.tag}{self.props_to_html()}>{value}</{self.tag}>"
 
 
 def text_node_to_html_node(text_node: TextNode):

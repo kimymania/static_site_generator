@@ -54,7 +54,7 @@ class TestHTMLNode(unittest.TestCase):
         outer = ParentNode("div", [inner], {"id": "container"})
         self.assertEqual(
             outer.to_html(),
-            "<div><span class='highlight'>text</span></div>",
+            "<div id='container'><span class='highlight'>text</span></div>",
         )
 
     def test_to_html_empty_props(self):
