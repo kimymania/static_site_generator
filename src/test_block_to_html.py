@@ -1,6 +1,38 @@
 import unittest
 
-from markdown_blocks import markdown_to_html_node
+from markdown_blocks import extract_title, markdown_to_html_node
+
+
+class TestTitleExtract(unittest.TestCase):
+    def test_extraction(self):
+        md = """
+# This is the header
+
+blahblahblah
+"""
+        node = extract_title(md)
+        self.assertEqual(node, "This is the header")
+
+    def test_extraction2(self):
+        md = """
+
+
+# This is a working header
+"""
+        node = extract_title(md)
+        self.assertEqual(node, "This is a working header")
+
+    def test_extraction_error(self):
+        md = """
+### This should raise an error
+"""
+        self.assertRaises(Exception, extract_title, md)
+
+    def test_extraction_error2(self):
+        md = """
+#This is another cause for error
+"""
+        self.assertRaises(Exception, extract_title, md)
 
 
 class TestBlockToHTML(unittest.TestCase):

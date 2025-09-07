@@ -1,18 +1,28 @@
 import os
 import shutil
 
+from generate_page import generate_page
+
 
 def main():
     cwd = os.getcwd()
     public_folder = os.path.abspath(os.path.join(cwd, "public"))
     static_folder = os.path.abspath(os.path.join(cwd, "static"))
 
+    # Delete contents of public folder
     if not os.path.exists(public_folder):
         os.mkdir(public_folder)
     elif len(os.listdir(public_folder)) > 0:
         delete_contents(public_folder)
 
+    # Copy contents of static folder to public folder
     copy_contents(static_folder, public_folder)
+
+    # Generate page from content/index.md using template.html and write it to public/index.html
+    md_path = os.path.join(cwd, "content/index.md")
+    template_path = os.path.join(cwd, "template.html")
+    dest_path = os.path.join(cwd, "public/index.html")
+    generate_page(md_path, template_path, dest_path)
 
 
 def delete_contents(path):
