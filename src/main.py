@@ -1,12 +1,18 @@
 import os
 import shutil
+import sys
 
 from generate_page import generate_pages_recursive
 
 
 def main():
+    if sys.argv:
+        basepath = sys.argv[0]
+    else:
+        basepath = "/"
+
     cwd = os.getcwd()
-    public_folder = os.path.abspath(os.path.join(cwd, "public"))
+    public_folder = os.path.abspath(os.path.join(cwd, "docs"))
     static_folder = os.path.abspath(os.path.join(cwd, "static"))
 
     # Delete contents of public folder
@@ -21,8 +27,8 @@ def main():
     # Generate page from content/index.md using template.html and write it to public/index.html
     md_path = os.path.join(cwd, "content")
     template_path = os.path.join(cwd, "template.html")
-    dest_path = os.path.join(cwd, "public")
-    generate_pages_recursive(md_path, template_path, dest_path)
+    dest_path = os.path.join(cwd, "docs")
+    generate_pages_recursive(md_path, template_path, dest_path, basepath)
 
 
 def delete_contents(path):
