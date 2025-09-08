@@ -12,23 +12,22 @@ def main():
         basepath = "/"
 
     cwd = os.getcwd()
-    public_folder = os.path.abspath(os.path.join(cwd, "docs"))
-    static_folder = os.path.abspath(os.path.join(cwd, "static"))
+    docs_folder = os.path.join(cwd, "docs")
+    static_folder = os.path.join(cwd, "static")
 
     # Delete contents of public folder
-    if not os.path.exists(public_folder):
-        os.mkdir(public_folder)
-    elif len(os.listdir(public_folder)) > 0:
-        delete_contents(public_folder)
+    if not os.path.exists(docs_folder):
+        os.mkdir(docs_folder)
+    elif len(os.listdir(docs_folder)) > 0:
+        delete_contents(docs_folder)
 
     # Copy contents of static folder to public folder
-    copy_contents(static_folder, public_folder)
+    copy_contents(static_folder, docs_folder)
 
     # Generate page from content/index.md using template.html and write it to public/index.html
     md_path = os.path.join(cwd, "content")
     template_path = os.path.join(cwd, "template.html")
-    dest_path = os.path.join(cwd, "docs")
-    generate_pages_recursive(md_path, template_path, dest_path, basepath)
+    generate_pages_recursive(md_path, template_path, docs_folder, basepath)
 
 
 def delete_contents(path):
