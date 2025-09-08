@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from generate_page import generate_page
+from generate_page import generate_pages_recursive
 
 
 def main():
@@ -19,10 +19,10 @@ def main():
     copy_contents(static_folder, public_folder)
 
     # Generate page from content/index.md using template.html and write it to public/index.html
-    md_path = os.path.join(cwd, "content/index.md")
+    md_path = os.path.join(cwd, "content")
     template_path = os.path.join(cwd, "template.html")
-    dest_path = os.path.join(cwd, "public/index.html")
-    generate_page(md_path, template_path, dest_path)
+    dest_path = os.path.join(cwd, "public")
+    generate_pages_recursive(md_path, template_path, dest_path)
 
 
 def delete_contents(path):
