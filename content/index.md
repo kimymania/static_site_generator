@@ -10,9 +10,9 @@ Here's the deal, **I like Tolkien**.
 
 ## Blog posts
 
-- [Why Glorfindel is More Impressive than Legolas](/blog/glorfindel)
-- [Why Tom Bombadil Was a Mistake](/blog/tom)
-- [The Unparalleled Majesty of "The Lord of the Rings"](/blog/majesty)
+- [Why Glorfindel is More Impressive than Legolas](/blog/glorfindel/index.html)
+- [Why Tom Bombadil Was a Mistake](/blog/tom/index.html)
+- [The Unparalleled Majesty of "The Lord of the Rings"](/blog/majesty/index.html)
 
 ## Reasons I like Tolkien
 
@@ -41,6 +41,6 @@ func main(){
 }
 ```
 
-Want to get in touch? [Contact me here](/contact).
+Want to get in touch? [Contact me here](/contact/index.html).
 
 This site was generated with a custom-built [static site generator](https://www.boot.dev/courses/build-static-site-generator-python) from the course on [Boot.dev](https://www.boot.dev).
